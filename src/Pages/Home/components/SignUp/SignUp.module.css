@@ -1,0 +1,10 @@
+.referal-code {
+    color: #7fa8e4;
+    margin: 15px 0;
+    cursor: pointer;
+}
+
+.home-login-container-active {
+    transform: translateX(0px);
+}
+

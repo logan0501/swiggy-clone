@@ -1,0 +1,28 @@
+.delivery_address_container {
+    padding: 40px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: start;
+}
+
+.h4 {
+    color: rgb(176, 177, 184);
+}
+
+.address {
+    resize: none;
+    margin-top: 10px;
+    outline: none;
+    width: 50%;
+}
+
+.save_button {
+    width: 50%;
+
+}
+
+.address_para {
+    font-size: 0.8rem;
+}

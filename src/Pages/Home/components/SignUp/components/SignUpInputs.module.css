@@ -1,0 +1,8 @@
+.bottom-border-ip {
+    border-bottom: none;
+}
+
+.bottom-border-ip:last-child {
+
+    border: 1px solid rgb(104, 107, 120, 0.4);
+}

@@ -1,0 +1,22 @@
+.payment_container {
+    padding: 40px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.h4 {
+    color: rgb(176, 177, 184);
+}
+
+.upid_input {
+    margin-top: 20px;
+    width: 40%;
+    padding: 10px;
+    outline: none;
+
+}
+
+.payment_button {
+    width: 40%;
+}

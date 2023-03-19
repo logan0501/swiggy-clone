@@ -1,0 +1,78 @@
+.input_container {
+    position: relative;
+}
+
+.find-food-container {
+    display: flex;
+    justify-content: space-between;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.find-food-ip-container {
+    flex: 70;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.location_error_text {
+    background: rgb(250, 74, 91);
+    position: absolute;
+
+    font-size: 0.9rem;
+    width: 100%;
+    height: 50%;
+    color: white;
+    padding: 10px 20px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.find-food-container {
+    border: 1px solid var(--swiggy-orange);
+}
+
+.find-food-ip {
+    outline: none;
+    border: none;
+    width: 70%;
+    margin: 0 20px;
+    font-size: 18px;
+    font-weight: 500;
+    font-style: normal;
+    color: var(--light-black);
+    caret-color: var(--swiggy-orange);
+}
+
+.find-food-location {
+
+
+    text-decoration: none;
+    margin-right: 10px;
+    color: var(--light-black);
+    font-size: 0.9rem;
+    padding: 10px 10px;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.find-food-location:hover {
+    background-color: rgb(104, 107, 120, 0.1);
+}
+
+.find-food-btn {
+    background-color: var(--swiggy-orange);
+    display: flex;
+    padding: 25px 0;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    border: none;
+    font-weight: bolder;
+    color: white;
+    width: 130px;
+    font-size: 1rem;
+}

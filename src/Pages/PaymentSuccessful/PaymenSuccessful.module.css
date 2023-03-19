@@ -1,0 +1,110 @@
+.progress_container {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background: #f6f6f5;
+
+}
+
+.payment_success_icon_container {
+    text-align: center;
+    transform: translateY(-50%);
+    animation: fade-in;
+    animation-duration: 2s;
+    -webkit-animation-fill-mode: forwards;
+
+}
+
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        position: absolute;
+        top: 50%;
+    }
+    50% {
+        opacity: 1;
+        position: absolute;
+        top: 50%;
+    }
+    100% {
+        position: absolute;
+        top: 10%;
+    }
+}
+
+.bill_header {
+    margin: 20px 0px;
+    text-align: center;
+}
+
+.bill_details {
+    opacity: 0;
+    padding: 10px 30px;
+    background: white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
+    animation: bill-in;
+    animation-duration: 1s;
+    animation-delay: 2s;
+    -webkit-animation-fill-mode: forwards;
+
+}
+
+@keyframes bill-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.food_item_container {
+    padding: 10px;
+    width: 100%;
+    margin-top: 10px;
+    height: 15rem;
+
+}
+
+.food_item_header {
+    display: grid;
+    grid-template-columns:1fr 4fr repeat(2, 1fr);
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.food_item {
+    display: grid;
+    grid-template-columns:1fr 4fr repeat(2, 1fr);
+    justify-content: space-between;
+
+}
+
+.food_item_qty {
+    justify-self: center;
+}
+
+.total_amount_container {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: flex-end;
+    padding-right: 42px;
+}
+
+.order_more_link {
+    display: flex;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: #207AD2;
+}

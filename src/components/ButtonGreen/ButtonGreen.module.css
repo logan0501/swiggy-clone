@@ -1,0 +1,24 @@
+
+.payment_button {
+    background: #60b246;
+    color: white;
+    border: none;
+    margin: 20px 0;
+    padding: 10px;
+    font-weight: bolder;
+    transition: all 0.2s ease-in;
+}
+
+.payment_button:disabled {
+    background: rgb(229, 229, 229);
+    color: rgb(112, 112, 112);
+}
+
+.payment_button:disabled:hover {
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+.payment_button:hover {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}

@@ -1,0 +1,42 @@
+
+.restaurant_error_modal {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 40px 30px;
+    position: fixed;
+    bottom: 30px;
+    background: white;
+    width: 40%;
+    left: 50%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transform: translateX(-50%);
+}
+
+.restaurant_error_modal p {
+    color: #8c8d97;
+    font-size: 0.9rem;
+}
+
+.error_modal_button_container {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.error_modal_button {
+    flex-basis: 50%;
+    background: none;
+    padding: 15px;
+    border: none;
+    cursor: pointer;
+}
+
+.light_button {
+    border: 2px solid rgb(95, 178, 70);
+}
+
+.dark_button {
+    background: rgb(95, 178, 70);
+    color: white;
+}

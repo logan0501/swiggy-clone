@@ -1,0 +1,34 @@
+.empty_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    overflow-y: hidden;
+    flex-direction: column;
+}
+
+.empty_container img {
+    width: 25%;
+    height: 50%;
+    object-fit: contain;
+
+}
+
+.empty_container h4 {
+    margin: 10px 0;
+}
+
+.empty_container p {
+    font-size: 0.9rem;
+    color: #686b78;
+}
+
+.home_redirect_btn {
+    background: rgb(252, 128, 24);
+    color: white;
+    border: none;
+    margin: 10px;
+    font-weight: bolder;
+    padding: 10px 20px;
+    cursor: pointer;
+}

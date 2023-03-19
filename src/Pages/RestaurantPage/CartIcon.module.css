@@ -1,0 +1,34 @@
+.cart_icon_container {
+    position: relative;
+    top: 2px;
+}
+
+.cart_icon {
+    fill: #fff;
+    stroke-width: 2px;
+    stroke: #282c3f;
+
+}
+
+.cart_icon_active {
+    stroke: #60b246;
+    fill: #60b246;
+}
+
+.cart_icon_count {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.9rem;
+
+}
+
+.cart_icon_count_active {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.9rem;
+    color: white;
+}

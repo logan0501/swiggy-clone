@@ -1,0 +1,53 @@
+.account_section {
+    display: flex;
+    background: white;
+    padding: 30px 40px;
+    justify-content: space-between;
+}
+
+
+.buttons_container {
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+}
+
+.button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button:hover {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.button_light p {
+    color: rgb(95, 178, 70);
+    font-size: 0.9rem;
+    font-style: normal;
+}
+
+.button_light {
+    border: 1px solid rgb(95, 178, 70);
+    color: rgb(95, 178, 70);
+    padding: 10px 30px;
+}
+
+.button_dark {
+    background: rgb(95, 178, 70);
+    color: white;
+    padding: 10px 30px;
+}
+
+.button_dark p {
+    color: white;
+    font-size: 0.9rem;
+    font-style: normal;
+}
+
+.auth_input {
+    width: 70%;
+    margin-top: 20px;
+}
+

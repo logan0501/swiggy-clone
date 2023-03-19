@@ -1,0 +1,21 @@
+
+.popular-cities-container p:first-child {
+    color: rgba(104, 107, 120, 0.5);
+}
+
+.popular-cities-list {
+    font-weight: bold;
+    margin: 10px 0px;
+}
+
+.popular-cities-list a {
+    margin-right: 5px;
+}
+
+.popular-cities-list a:nth-child(even) {
+    color: rgba(104, 107, 120, 0.4);
+}
+
+.popular-cities-list a:nth-child(odd) {
+    color: rgba(104, 107, 120, 0.9);
+}
