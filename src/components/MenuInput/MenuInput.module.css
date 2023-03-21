@@ -1,0 +1,28 @@
+.ip-container {
+  border: 1px solid rgb(104, 107, 120, 0.4);
+  padding: 15px 20px;
+}
+.ip-title {
+  color: #686b78;
+  font-size: 0.7rem;
+  margin-bottom: 5px;
+}
+.ip-container input {
+  font-size: 1rem;
+}
+.login-phone-ip {
+  border: none;
+  outline: none;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+.error_text {
+  color: #fa4a5b;
+  font-size: 0.7rem;
+  margin-bottom: 5px;
+}

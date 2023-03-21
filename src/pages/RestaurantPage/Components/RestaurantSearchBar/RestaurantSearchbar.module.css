@@ -1,0 +1,79 @@
+.restaurant_search__nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    width: 100vw;
+    padding: 15px 20px;
+}
+
+.swiggy_logo {
+    transition: all 0.3s ease;
+}
+
+.swiggy_logo:hover {
+    transform: scale(1.1);
+}
+
+.restaurant_search__brand {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 30%;
+    margin: 0 20px;
+}
+
+.restaurant_search__nav li {
+    cursor: pointer;
+}
+
+.restaurant_search__nav li:hover {
+    color: rgb(252 127 25);
+}
+
+.restaurant_search__location {
+    border: none;
+    background: none;
+    display: flex;
+    align-items: baseline;
+    font-size: 0.9rem;
+    color: rgb(148 149 159);
+}
+
+.restaurant_search__location > span {
+    font-weight: bolder;
+    margin: 0 10px;
+    color: rgb(87, 88, 94);
+    padding-bottom: 5px;
+    border-bottom: 1px solid black;
+}
+
+.restaurant_search__location > div {
+    display: flex;
+    align-items: center;
+}
+
+.restaurant_search__drop_icon {
+    color: rgb(252 127 25);
+    font-size: 1.3rem;
+}
+
+li {
+    list-style: none;
+}
+
+.restaurant_search__items {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    margin-right: 70px;
+    color: #444;
+}
+
+.restaurant_search__items li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1rem;
+}

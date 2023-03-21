@@ -1,0 +1,32 @@
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login {
+    color: black;
+    font-weight: 600;
+    margin: 0 20px;
+}
+
+.login:hover {
+    color: #fc8018;
+}
+
+.sign-up {
+    color: white;
+    width: 100px;
+    height: 200px;
+    background-color: black;
+    padding: 10px 20px;
+}
+
+.sign-up a {
+    color: inherit;
+    font-weight: 600;
+}
+
+

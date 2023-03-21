@@ -1,0 +1,75 @@
+.restaurants-display-section {
+    display: flex;
+    margin-top: 20px;
+}
+
+.restaurants-title {
+    padding-left: 20px;
+    font-size: 1.7rem;
+    color: #282c3f;
+    margin-block: 0;
+    padding-bottom: -5px;
+}
+
+.restaurant-header {
+    border-bottom: 1px solid #e9e9eb;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.restaurants-filter-nav > ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+}
+
+.filter-item {
+    padding-bottom: 10px;
+    font-weight: 100;
+    margin-right: 40px;
+    color: #686b78;
+}
+
+.filter-item:hover {
+    font-weight: 300;
+    color: #181a29;
+    cursor: pointer;
+}
+
+.focused {
+    font-weight: 300;
+    color: #181a29;
+    border-bottom: 1px solid #181a29;
+}
+
+.dropdown-filter {
+    display: flex;
+    gap: 100px;
+    align-items: start;
+    justify-content: center;
+    position: relative;
+}
+
+.cost_dropdown_container {
+    width: 100%;
+    background: white;
+    position: absolute;
+    top: 30px;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 7px 10px;
+}
+
+.cost_dropdown_item {
+    padding: 10px 20px;
+    border-bottom: 0.1px solid grey;
+}
+
+
+.cost_dropdown_item:hover {
+    background: rgb(252, 128, 24);
+    color: white;
+}
+

@@ -1,0 +1,40 @@
+.header {
+    display: grid;
+    grid-template-columns: 55% 45%;
+    width: 100vw;
+
+}
+
+.home-img {
+    background-image: url("https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_1340/Lunch1_vlksgq");
+    position: relative;
+    right: 0;
+    background-size: cover;
+    background-position: 100%;
+    width: 100%;
+}
+
+.nav-section {
+    padding: 8%;
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.home-title {
+    text-align: left;
+}
+
+h1 {
+    font-size: 3rem;
+    color: var(--dark-black);
+    letter-spacing: 2px;
+}
+
+.grey-para {
+    font-size: 1.5rem;
+    color: var(--light-black);
+    margin-top: 10px;
+    font-weight: 100;
+}

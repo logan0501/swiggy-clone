@@ -1,0 +1,83 @@
+.food-offers-corousel-container {
+    z-index: 1;
+    background-color: #181a29;
+    display: flex;
+    overflow: scroll;
+    position: relative;
+    padding: 50px;
+}
+
+.food-offers-div {
+    display: flex;
+    overflow: hidden;
+}
+
+.offer-card {
+    width: 260px;
+    height: 260px;
+    margin-right: 60px;
+
+    transition: all 0.7s ease-in-out;
+}
+
+.offer-card > img {
+    transition: all 0.3s ease-in;
+}
+
+.offer-card > img:hover {
+    transform: scale(1.1, 1.1);
+    cursor: pointer;
+}
+
+/* .offer-card:first-child {
+  margin-left: 40px;
+} */
+
+.corousel-btn {
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    background-color: white;
+    cursor: pointer;
+    transform: translateY(-50%);
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: var(--light-black);
+}
+
+.c-right-btn {
+    right: 30px;
+    top: 50%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.c-left-btn {
+    left: 30px;
+    top: 50%;
+}
+
+.enabled-p {
+    transition: all 0.5s;
+    user-select: none;
+}
+
+.enabled-p:hover {
+    transform: translateX(-5px);
+}
+
+.disabled-btn,
+.disabled-btn:hover {
+    user-select: none;
+    background-color: rgb(229, 229, 229);
+    color: rgb(174, 174, 174);
+    cursor: not-allowed;
+
+}
+
+.disabled-p:hover {
+    transition: none !important;
+    transform: none;
+}

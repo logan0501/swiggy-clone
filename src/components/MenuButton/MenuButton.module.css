@@ -1,0 +1,17 @@
+.login-btn {
+  margin: 10px 0 5px 0;
+  width: 100%;
+  padding: 20px 10px;
+  border: none;
+  font-weight: bold;
+  color: white;
+  background-color: var(--swiggy-orange);
+  transition: box-shadow 0.2s ease;
+}
+.login-btn:hover {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.login-btn + p {
+  font-size: 0.7rem;
+  color: #686b78;
+}
