@@ -1,5 +1,5 @@
-import LoginInputs from "../../Pages/Home/components/Login/components/LoginInputs";
-import SignUpInputs from "../../Pages/Home/components/SignUp/components/SignUpInputs";
+import LoginInputs from "../../pages/Home/components/Login/components/LoginInputs";
+import SignUpInputs from "../../pages/Home/components/SignUp/components/SignUpInputs";
 
 export const LOGIN_CARD = {
   title: "Login",

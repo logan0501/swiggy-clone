@@ -1,4 +1,4 @@
-import { EMAIL, NAME, PHONE_NUMBER } from "./constants/validator";
+import { EMAIL, NAME, PHONE_NUMBER } from "./signupInputReducer";
 
 const validate = (value, type) => {
   switch (type) {

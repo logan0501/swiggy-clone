@@ -3,15 +3,15 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import RestaurantPage from "./Pages/RestaurantPage/RestaurantPage";
+import RestaurantPage from "./pages/RestaurantPage/RestaurantPage";
 import { DevSupport } from "@react-buddy/ide-toolbox";
 import { ComponentPreviews, useInitial } from "./dev";
-import Checkout from "./Pages/Checkout/Checkout";
+import Checkout from "./pages/Checkout/Checkout";
 import CartProvider from "./store/CartProvider";
 import RestaurantsProvider from "./store/RestaurantsProvider";
 import LocationProvider from "./store/LocationProvider";
 import UserProvider from "./store/UserProvider";
-import PaymentSuccessful from "./Pages/PaymentSuccessful/PaymentSuccessful";
+import PaymentSuccessful from "./pages/PaymentSuccessful/PaymentSuccessful";
 
 const router = createBrowserRouter([
   {

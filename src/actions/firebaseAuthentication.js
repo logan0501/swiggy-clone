@@ -5,18 +5,21 @@ import { ERROR, SUCCESS } from "../utils/constants/userCurrentLocationStatus";
 
 export const createAccount = async (name, email, phoneNumber) => {
   try {
-    const { user } = await createUserWithEmailAndPassword(
+    const message = await createUserWithEmailAndPassword(
       auth,
       email,
       phoneNumber
     );
+    const { user } = message;
     if (user) {
       const data = { name, email, phoneNumber };
       await setDoc(doc(db, "users", phoneNumber), data);
-      return { status: SUCCESS, uid: user.uid };
+      return { status: SUCCESS, data };
+    } else {
+      throw new Error("User Already Exist");
     }
   } catch (error) {
-    return { status: ERROR, error };
+    return { status: ERROR, error: "Email already Exist." };
   }
 };
 

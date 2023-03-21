@@ -11,6 +11,7 @@ const useInput = (validateInput, isPhone = false) => {
     if (isPhone) {
       if (e.target.value.length === 11) return;
       setEnteredValue(e.target.value);
+      setIsTouched(false);
     } else setEnteredValue(e.target.value);
   };
   const valueBlurHandler = () => {

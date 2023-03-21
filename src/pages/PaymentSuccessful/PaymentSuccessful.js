@@ -79,7 +79,6 @@ function PaymentSuccessful(props) {
             </div>
             <Link to="/" replace className={classes.order_more_link}>
               <span>Click here to order More</span>
-
               <AiFillHome />
             </Link>
           </div>

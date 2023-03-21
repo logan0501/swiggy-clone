@@ -1,20 +1,23 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import AuthMenubar from "../../../../components/AuthMenubar/AuthMenubar";
 import classes from "./Login.module.css";
 import MenuButton from "../../../../components/MenuButton/MenuButton";
 import LoginInputs from "./components/LoginInputs";
-import useInput from "../../../../hooks/use-input";
-import ReactDom from "react-dom";
-import BackDrop from "../../../../components/BackDrop/BackDrop";
+import userContext from "../../../../store/user-context";
 import { loginUserWithPhoneNumber } from "../../../../actions/firebaseAuthentication";
 import {
   ERROR,
   SUCCESS,
 } from "../../../../utils/constants/userCurrentLocationStatus";
-import userContext from "../../../../store/user-context";
+import useInput from "../../../../hooks/use-input";
+import CircularProgress from "@mui/material/CircularProgress";
+import ReactDom from "react-dom";
+import BackDrop from "../../../../components/BackDrop/BackDrop";
 
 function Login(props) {
   const usercontext = useContext(userContext);
+  const [hasError, setHasError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const {
     enteredValue: loginPhoneNumber,
     valueIsValid: loginPhoneIsValid,
@@ -24,6 +27,7 @@ function Login(props) {
     valueChangeHandler: loginPhoneChangeHandler,
     reset: loginPhoneReset,
   } = useInput((number) => number.length === 10, true);
+
   const phoneInput = {
     loginPhoneNumber,
     loginPhoneIsValid,
@@ -33,6 +37,7 @@ function Login(props) {
     loginPhoneChangeHandler,
   };
   const loginButtonHandler = async () => {
+    setIsLoading(true);
     if (loginPhoneIsValid) {
       const res = await loginUserWithPhoneNumber(loginPhoneNumber);
       if (res.status === SUCCESS) {
@@ -41,11 +46,15 @@ function Login(props) {
         usercontext.setLoggedIn(true);
         loginResetHandler();
       } else if (res.status === ERROR) {
-        alert(res.error);
+        setHasError(res.error);
+        setTimeout(() => {
+          setHasError(false);
+        }, 3000);
       }
     } else {
       setLoginPhoneTouched(true);
     }
+    setIsLoading(false);
   };
   const loginResetHandler = () => {
     loginPhoneReset();
@@ -56,7 +65,7 @@ function Login(props) {
         menuStatus={props.menuStatus}
         onMenuChange={props.menuChangeHandler}
         onMenuClose={props.closeMenu}
-        onReset={loginResetHandler}
+        // onReset={loginResetHandler}
         className={
           props.menuStatus === "login" && props.showCard === true
             ? classes["home-login-container-active"]
@@ -66,7 +75,14 @@ function Login(props) {
         subtitle="create an account"
       >
         <LoginInputs {...phoneInput} />
-        <MenuButton onClick={loginButtonHandler}>LOGIN</MenuButton>
+        {hasError && <p className={classes.auth_error_text}>{hasError}</p>}
+        <MenuButton onClick={loginButtonHandler}>
+          {!isLoading ? (
+            "LOGIN"
+          ) : (
+            <CircularProgress size="1.2rem" style={{ color: "white" }} />
+          )}
+        </MenuButton>
         <p>
           By clicking on Login, I accept the
           <strong> Terms & Conditions</strong> &<strong>Privacy Policy</strong>

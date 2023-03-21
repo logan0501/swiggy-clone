@@ -9,6 +9,9 @@ function UserProvider(props) {
   };
   const isLoggedInHandler = (status) => {
     setIsLoggedIn(status);
+    if (status === false) {
+      setUser({});
+    }
   };
   const userContext = {
     user,

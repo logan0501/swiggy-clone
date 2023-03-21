@@ -1,0 +1,11 @@
+.home-login-container-active {
+    transform: translateX(0px);
+}
+
+.auth_error_text {
+    padding: 5px 7px;
+    font-size: 0.8rem;
+    background: #FFEFF2;
+    margin: 10px 0;
+    color: #fa4a5b;
+}

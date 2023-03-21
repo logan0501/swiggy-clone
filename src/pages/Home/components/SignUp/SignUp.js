@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import AuthMenubar from "../../../../components/AuthMenubar/AuthMenubar";
 import MenuButton from "../../../../components/MenuButton/MenuButton";
 import classes from "./SignUp.module.css";
@@ -8,6 +8,8 @@ import ReactDom from "react-dom";
 import BackDrop from "../../../../components/BackDrop/BackDrop";
 import { createAccount } from "../../../../actions/firebaseAuthentication";
 import { SUCCESS } from "../../../../utils/constants/userCurrentLocationStatus";
+import UserContext from "../../../../store/user-context";
+import CircularProgress from "@mui/material/CircularProgress";
 
 function SignUp(props) {
   const {
@@ -39,6 +41,8 @@ function SignUp(props) {
   } = useInput(
     (email) => email.trim() !== "" && email.includes("@") && email.includes(".")
   );
+  const [hasError, setHasError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const signupPropObject = {
     signupPhoneNumber,
     signupPhoneIsValid,
@@ -63,11 +67,12 @@ function SignUp(props) {
     signupEmailReset,
   };
   let formIsValid = false;
+  const usercontext = useContext(UserContext);
   if (signupNameIsValid && signupPhoneIsValid && signupEmailIsValid)
     formIsValid = true;
   const signupButtonClickHandler = async () => {
     if (formIsValid) {
-      props.closeMenu();
+      setIsLoading(true);
       const response = await createAccount(
         signupName,
         signupEmail,
@@ -75,8 +80,16 @@ function SignUp(props) {
       );
       signupResetHandler();
       if (response.status === SUCCESS) {
-        alert("Account created successfully");
+        usercontext.setUser(response.data);
+        usercontext.setLoggedIn(true);
+        props.closeMenu();
+      } else {
+        setHasError(response.error);
+        setTimeout(() => {
+          setHasError(false);
+        }, 3000);
       }
+      setIsLoading(false);
     } else {
       if (!signupPhoneIsValid) {
         setSignupPhoneTouched(true);
@@ -113,7 +126,14 @@ function SignUp(props) {
           <SignUpInputs {...signupPropObject} />
           <p className={classes["referal-code"]}>Have a referal code?</p>
         </div>
-        <MenuButton onClick={signupButtonClickHandler}>CONTINUE</MenuButton>
+        {hasError && <p className={classes.auth_error_text}>{hasError}</p>}
+        <MenuButton onClick={signupButtonClickHandler}>
+          {!isLoading ? (
+            "CONTINUE"
+          ) : (
+            <CircularProgress size="1.2rem" style={{ color: "white" }} />
+          )}
+        </MenuButton>
         <p>
           By creating an account, I accept the
           <strong> Terms & Conditions</strong> & <strong>Privacy Policy</strong>

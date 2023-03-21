@@ -9,6 +9,7 @@ const initialCartItem = {
 };
 
 function cartReducer(state, action) {
+  console.log(action);
   if (action.type === "ADD") {
     if (
       state.restaurantId == -1 ||

@@ -12,7 +12,6 @@ export const getLocationName = async (latitude, longitude) => {
     const data = await response.json();
     return { status: SUCCESS, data };
   } catch (error) {
-    console.log(error);
     return { status: ERROR, error };
   }
   sessionStorage.setItem("latitude", latitude);
