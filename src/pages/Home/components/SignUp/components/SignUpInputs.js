@@ -31,7 +31,7 @@ function SignUpInputs(props) {
     <div>
       <MenuInput
         title="Phone Number"
-        type="number"
+        type="tel"
         onChange={signupPhoneChangeHandler}
         onBlur={signupPhoneBlurHandler}
         value={signupPhoneNumber}

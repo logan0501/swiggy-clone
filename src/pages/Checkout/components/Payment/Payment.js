@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import classes from "./Payment.module.css";
 import ButtonGreen from "../../../../components/ButtonGreen/ButtonGreen";
 import { useNavigate } from "react-router-dom";
+import userContext from "../../../../store/user-context";
 
 function Payment(props) {
-  const { addressCheckOut } = props;
+  const { addressCheckOut, restaurant } = props;
+
+  const { isLoggedIn } = useContext(userContext);
+
   const [UPIValue, setUPIValue] = useState("");
   const navigate = useNavigate();
 
@@ -13,13 +17,15 @@ function Payment(props) {
   }
 
   const paymentHandler = () => {
-    if (UPIValue.length === 0) return;
-    navigate("/payment-successful");
+    if (UPIValue.trim().length === 0) return;
+    navigate("/payment-successful", {
+      state: { restaurant },
+    });
   };
   return (
     <div className={classes.payment_container}>
       <h4 className={classes.h4}>Payment</h4>
-      {addressCheckOut && (
+      {isLoggedIn && addressCheckOut && (
         <>
           <input
             type="text"

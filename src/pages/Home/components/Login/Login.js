@@ -8,11 +8,13 @@ import { loginUserWithPhoneNumber } from "../../../../actions/firebaseAuthentica
 import {
   ERROR,
   SUCCESS,
-} from "../../../../utils/constants/userCurrentLocationStatus";
+} from "../../../../constants/userCurrentLocationStatus";
 import useInput from "../../../../hooks/use-input";
 import CircularProgress from "@mui/material/CircularProgress";
 import ReactDom from "react-dom";
 import BackDrop from "../../../../components/BackDrop/BackDrop";
+import { inputValidator } from "../../../../utils/validator.general";
+import { PHONE_NUMBER } from "../../../../constants/userInput";
 
 function Login(props) {
   const usercontext = useContext(userContext);
@@ -26,7 +28,7 @@ function Login(props) {
     valueBlurHandler: loginPhoneBlurHandler,
     valueChangeHandler: loginPhoneChangeHandler,
     reset: loginPhoneReset,
-  } = useInput((number) => number.length === 10, true);
+  } = useInput((number) => inputValidator(PHONE_NUMBER, number), true);
 
   const phoneInput = {
     loginPhoneNumber,
@@ -65,7 +67,7 @@ function Login(props) {
         menuStatus={props.menuStatus}
         onMenuChange={props.menuChangeHandler}
         onMenuClose={props.closeMenu}
-        // onReset={loginResetHandler}
+        onReset={loginResetHandler}
         className={
           props.menuStatus === "login" && props.showCard === true
             ? classes["home-login-container-active"]

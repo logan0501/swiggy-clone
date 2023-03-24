@@ -1,19 +1,24 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import classes from "./RestaurantNavbar.module.css";
 import { FiChevronDown } from "react-icons/fi";
+import { RestaurantContext } from "../../../../../../store/restaurant-context";
+import { map } from "lodash";
 
 const navbarItems = ["Relevance", "Delivery Time", "Rating", "Cost"];
 export default function RestaurantNavbar(props) {
   const [showDropdown, setShowDropdown] = useState(false);
   const [dropdownText, setDropdownText] = useState("Cost");
+  const { setRestaurants } = useContext(RestaurantContext);
   const changeHandler = (e) => {
     e.preventDefault();
     props.onNavChange(e.target.name);
+    setRestaurants([]);
   };
   const setDropdownTextHandler = (value) => {
     setShowDropdown(false);
     setDropdownText("Cost: " + value);
     props.onNavChange("Cost: " + value);
+    setRestaurants([]);
   };
   const showCostDropdownHandler = () => {
     setShowDropdown(true);
@@ -29,8 +34,10 @@ export default function RestaurantNavbar(props) {
       <h2 className={classes["restaurants-title"]}>700 restaurants</h2>
       <nav className={classes["restaurants-filter-nav"]}>
         <ul className={classes["restaurants-filter-nav-ul"]}>
-          {navbarItems.map(
+          {map(
+            navbarItems,
             (navbarItem, index) =>
+
               index < 3 && (
                 <li key={navbarItem}>
                   <a
@@ -52,8 +59,7 @@ export default function RestaurantNavbar(props) {
               onMouseEnter={showCostDropdownHandler}
               onMouseLeave={hideCostDropdownHandler}
             >
-              <a
-                href="/"
+              <span
                 className={`${
                   classes["filter-item"] + " " + classes["dropdown-filter"]
                 } ${navIndex?.includes("Cost") ? classes["focused"] : " "}`}
@@ -62,7 +68,7 @@ export default function RestaurantNavbar(props) {
                 <span>
                   <FiChevronDown />
                 </span>
-              </a>
+              </span>
               {showDropdown && (
                 <ul className={classes.cost_dropdown_container}>
                   <li

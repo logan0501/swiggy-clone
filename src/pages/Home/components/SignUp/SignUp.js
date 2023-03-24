@@ -7,9 +7,11 @@ import useInput from "../../../../hooks/use-input";
 import ReactDom from "react-dom";
 import BackDrop from "../../../../components/BackDrop/BackDrop";
 import { createAccount } from "../../../../actions/firebaseAuthentication";
-import { SUCCESS } from "../../../../utils/constants/userCurrentLocationStatus";
+import { SUCCESS } from "../../../../constants/userCurrentLocationStatus";
 import UserContext from "../../../../store/user-context";
 import CircularProgress from "@mui/material/CircularProgress";
+import { EMAIL, NAME, PHONE_NUMBER } from "../../../../constants/userInput";
+import { inputValidator } from "../../../../utils/validator.general";
 
 function SignUp(props) {
   const {
@@ -20,7 +22,7 @@ function SignUp(props) {
     valueBlurHandler: signupPhoneBlurHandler,
     valueChangeHandler: signupPhoneChangeHandler,
     reset: signupPhoneReset,
-  } = useInput((number) => number.length === 10, true);
+  } = useInput((number) => inputValidator(PHONE_NUMBER, number), true);
   const {
     enteredValue: signupName,
     valueIsValid: signupNameIsValid,
@@ -29,7 +31,7 @@ function SignUp(props) {
     valueBlurHandler: signupNameBlurHandler,
     valueChangeHandler: signupNameChangeHandler,
     reset: signupNameReset,
-  } = useInput((name) => name.trim() !== "");
+  } = useInput((name) => inputValidator(NAME, name));
   const {
     enteredValue: signupEmail,
     valueIsValid: signupEmailIsValid,
@@ -38,11 +40,7 @@ function SignUp(props) {
     valueBlurHandler: signupEmailBlurHandler,
     valueChangeHandler: signupEmailChangeHandler,
     reset: signupEmailReset,
-  } = useInput(
-    (email) => email.trim() !== "" && email.includes("@") && email.includes(".")
-  );
-  const [hasError, setHasError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  } = useInput((email) => inputValidator(EMAIL, email));
   const signupPropObject = {
     signupPhoneNumber,
     signupPhoneIsValid,
@@ -67,7 +65,10 @@ function SignUp(props) {
     signupEmailReset,
   };
   let formIsValid = false;
+  const [hasError, setHasError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const usercontext = useContext(UserContext);
+
   if (signupNameIsValid && signupPhoneIsValid && signupEmailIsValid)
     formIsValid = true;
   const signupButtonClickHandler = async () => {

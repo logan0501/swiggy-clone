@@ -10,20 +10,24 @@ import { getLatitudeAndLongitude } from "../../../../../../actions/fetchLocation
 import {
   ERROR,
   SUCCESS,
-} from "../../../../../../utils/constants/userCurrentLocationStatus";
+} from "../../../../../../constants/userCurrentLocationStatus";
+import { RestaurantContext } from "../../../../../../store/restaurant-context";
 
 const LocationInput = () => {
   const locationctx = useContext(LocationContext);
   const [locationLoading, setLocationLoading] = useState(false);
   const [locationInput, setLocationInput] = useState(locationctx.locationName);
-
+  const { setIsLoading: isRestaurantLoading, setRestaurants } =
+    useContext(RestaurantContext);
   const locationBtnHandler = async () => {
     setLocationLoading(true);
+    locationctx.clearLocation();
     setLocationInput("Fetching your location...");
-    locationctx.setIsLoading(true);
+    isRestaurantLoading(true);
     const res = await getPosition();
     if (res.status === SUCCESS) {
       const { data: responseData } = res;
+      setRestaurants([]);
       locationctx.setLocation({
         latitude: res.latitude,
         longitude: res.longitude,
@@ -33,11 +37,11 @@ const LocationInput = () => {
       locationctx.setLocationError(res.error.message);
     }
     setLocationLoading(false);
-    locationctx.setIsLoading(false);
+    isRestaurantLoading(false);
     setLocationInput(locationctx.locationName);
   };
-
   const getLatitudeAndLongitudeHandler = async () => {
+    console.log(locationctx, locationInput);
     if (
       locationInput.trim().length === 0 &&
       locationctx.locationName.trim().length === 0
@@ -45,9 +49,10 @@ const LocationInput = () => {
       locationctx.setLocationError("Location value cannot be empty.");
       return;
     }
+    locationctx.clearLocation();
     setLocationLoading(true);
     setLocationInput("Fetching your location...");
-    locationctx.setIsLoading(true);
+    isRestaurantLoading(true);
     const res = await getLatitudeAndLongitude(
       locationInput,
       locationctx.locationName
@@ -55,6 +60,7 @@ const LocationInput = () => {
 
     if (res.status === SUCCESS) {
       const { data: responseData } = res;
+      setRestaurants([]);
       locationctx.setLocation({
         latitude: responseData[0].lat,
         longitude: responseData[0].lon,
@@ -65,18 +71,18 @@ const LocationInput = () => {
       setLocationInput("");
     }
     setLocationLoading(false);
-    locationctx.setIsLoading(false);
+    isRestaurantLoading(false);
     setLocationInput("");
   };
   const locationInputChangeHandler = (e) => {
     setLocationInput(e.target.value);
   };
   const locationFocusHandler = () => {
+    setLocationInput("");
     locationctx.clearLocation();
   };
   let locationName =
     locationctx.locationName !== "" ? locationctx.locationName : locationInput;
-
   return (
     <div className={classes.input_container}>
       <div className={classes["find-food-container"]}>

@@ -1,10 +1,11 @@
-import { WEATHER_API_KEY } from "../utils/constants/APIKeys";
-import { ERROR, SUCCESS } from "../utils/constants/userCurrentLocationStatus";
+import { WEATHER_API_KEY } from "../constants/APIKeys";
+import { ERROR, SUCCESS } from "../constants/userCurrentLocationStatus";
+import { replace } from "lodash";
 
 export const getLocationName = async (latitude, longitude) => {
   try {
     const response = await fetch(
-      `http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}8&lon=${longitude}&limit=1&appid=${WEATHER_API_KEY}`
+      `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}8&lon=${longitude}&limit=1&appid=${WEATHER_API_KEY}`
     );
     if (!response.ok) {
       throw new Error(response.statusText);
@@ -14,19 +15,20 @@ export const getLocationName = async (latitude, longitude) => {
   } catch (error) {
     return { status: ERROR, error };
   }
-  sessionStorage.setItem("latitude", latitude);
-  sessionStorage.setItem("longitude", longitude);
 };
 
 export const getLatitudeAndLongitude = async (
   input,
   locationNameFromContext
 ) => {
+  console.log(input, locationNameFromContext);
   try {
-    let locationInput = input ? input : locationNameFromContext;
-    if (locationInput.includes(" ")) locationInput.replace(" ", "");
+    let locationInput = locationNameFromContext
+      ? locationNameFromContext
+      : input;
+    replace(locationInput, " ", "");
     const response = await fetch(
-      `http://api.openweathermap.org/geo/1.0/direct?q=${locationInput}&limit=1&appid=${WEATHER_API_KEY}`
+      `https://api.openweathermap.org/geo/1.0/direct?q=${locationInput}&limit=1&appid=${WEATHER_API_KEY}`
     );
     if (!response.ok) throw new Error(response.statusText);
     const longitudeAndLatitude = await response.json();

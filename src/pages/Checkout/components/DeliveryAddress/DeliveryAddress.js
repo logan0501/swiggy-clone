@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import classes from "./DeliveryAddress.module.css";
 import userContext from "../../../../store/user-context";
 import ButtonGreen from "../../../../components/ButtonGreen/ButtonGreen";
+import { size, trim } from "lodash";
 
 let displayAddress = "";
 
@@ -12,7 +13,7 @@ function DeliveryAddress(props) {
     setAddress(e.target.value);
   };
   const addressSubmitHandler = () => {
-    if (address.length == 0) return;
+    if (size(trim(address)) === 0) return;
     props.onDeliveryAddressAdded(true);
     displayAddress = address;
     setAddress("");

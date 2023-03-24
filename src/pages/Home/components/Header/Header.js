@@ -5,10 +5,11 @@ import LocationInput from "./components/LocationInput/LocationInput";
 import PopularCities from "./components/PopularCities/PopularCities";
 
 export default function Header(props) {
+  const { onMenuChange } = props;
   return (
     <header className={classes.header}>
       <section className={`${classes["nav-section"]} ${props.className}`}>
-        <NavBar onMenuChange={props.onMenuChange} />
+        <NavBar onMenuChange={onMenuChange} />
         <div className={classes["home-title"]}>
           <h1>Game Night?</h1>
           <p className={classes["grey-para"]}>

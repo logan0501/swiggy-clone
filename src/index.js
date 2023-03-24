@@ -4,8 +4,6 @@ import "./index.css";
 import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RestaurantPage from "./pages/RestaurantPage/RestaurantPage";
-import { DevSupport } from "@react-buddy/ide-toolbox";
-import { ComponentPreviews, useInitial } from "./dev";
 import Checkout from "./pages/Checkout/Checkout";
 import CartProvider from "./store/CartProvider";
 import RestaurantsProvider from "./store/RestaurantsProvider";
@@ -34,20 +32,15 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.Fragment>
-    <DevSupport
-      ComponentPreviews={ComponentPreviews}
-      useInitialHook={useInitial}
-    >
-      <UserProvider>
-        <LocationProvider>
-          <RestaurantsProvider>
-            <CartProvider>
-              <RouterProvider router={router} />
-            </CartProvider>
-          </RestaurantsProvider>
-        </LocationProvider>
-      </UserProvider>
-    </DevSupport>
+    <UserProvider>
+      <LocationProvider>
+        <RestaurantsProvider>
+          <CartProvider>
+            <RouterProvider router={router} />
+          </CartProvider>
+        </RestaurantsProvider>
+      </LocationProvider>
+    </UserProvider>
   </React.Fragment>
 );
 

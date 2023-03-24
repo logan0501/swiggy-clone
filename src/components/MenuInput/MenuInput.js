@@ -13,7 +13,7 @@ const MenuInput = (props) => {
         type={props.type}
         className={classes["login-phone-ip"]}
         onChange={props.onChange}
-        value={props?.value ?? ""}
+        value={props?.value}
         onBlur={props?.onBlur}
         maxLength={props?.maxLength ?? 100}
       />

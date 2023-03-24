@@ -12,7 +12,6 @@ const LocationProvider = (props) => {
   const [location, setLocation] = useState(initialLocationState);
   const [locationError, setLocationError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
   const changeLocation = (newlocation) => {
     setLocation({
       latitude: newlocation.latitude,
@@ -41,7 +40,6 @@ const LocationProvider = (props) => {
     isLoading,
     setIsLoading: setIsLoading,
   };
-  console.log(location.latitude);
   return (
     <LocationContext.Provider value={locationContext}>
       {props.children}

@@ -1,31 +1,36 @@
 import {
   EMAIL,
+  EMAIL_REGEX,
   NAME,
   PHONE_NUMBER,
   PHONE_NUMBER_REGEX,
-} from "./constants/validator";
+} from "../constants/userInput";
+import { size, trim } from "lodash";
 
 function checkNumberOnly(value) {
-  return PHONE_NUMBER_REGEX.test(value);
+  if (PHONE_NUMBER_REGEX.test(value)) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 function checkPhoneInputIsValid(value) {
-  console.log(value);
-  return value.length === 0 || checkNumberOnly(value);
+  return (
+    size(trim(value)) === 0 || (checkNumberOnly(value) && size(value) <= 10)
+  );
 }
 
 function checkPhoneNumberValidity(value) {
-  return value.length === 10;
+  return size(value) === 10;
 }
 
 function checkEmailValidity(value) {
-  const emailRegex =
-    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-  return value.match(emailRegex) !== null;
+  return EMAIL_REGEX.test(value);
 }
 
 function checkIsNotEmpty(value) {
-  return value.trim().length !== 0;
+  return size(trim(value)) !== 0;
 }
 
 const inputValidator = (inputType, value) => {

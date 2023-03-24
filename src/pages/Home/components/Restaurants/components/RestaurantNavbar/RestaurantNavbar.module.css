@@ -29,6 +29,7 @@
     font-weight: 100;
     margin-right: 40px;
     color: #686b78;
+
 }
 
 .filter-item:hover {
@@ -45,7 +46,7 @@
 
 .dropdown-filter {
     display: flex;
-    gap: 100px;
+    gap: 50px;
     align-items: start;
     justify-content: center;
     position: relative;
@@ -71,5 +72,7 @@
 .cost_dropdown_item:hover {
     background: rgb(252, 128, 24);
     color: white;
+    cursor: pointer;
+
 }
 

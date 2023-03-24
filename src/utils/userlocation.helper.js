@@ -1,5 +1,5 @@
 import { getLocationName } from "../actions/fetchLocation";
-import { ERROR, SUCCESS } from "./constants/userCurrentLocationStatus";
+import { ERROR, SUCCESS } from "../constants/userCurrentLocationStatus";
 
 const getUserLocation = async () => {
   return new Promise((res, rej) => {

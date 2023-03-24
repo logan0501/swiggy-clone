@@ -1,21 +1,28 @@
 import React from "react";
 import classes from "./PopularCities.module.css";
+import { map } from "lodash";
 
 function PopularCities(props) {
+  const POPULAR_CITIES = [
+    "Ahmedabad",
+    "Bangalore",
+    "Chennai",
+    "Delhi",
+    "Gurgaon",
+    "Hyderabad",
+    "Kolkata",
+    "Mumbai",
+    "Pune",
+    "& more.",
+  ];
+
   return (
     <div className={classes["popular-cities-container"]}>
       <p>POPULAR CITIES IN INDIA</p>
       <ul className={classes["popular-cities-list"]}>
-        <a>Ahmedabad</a>
-        <a>Bangalore</a>
-        <a>Chennai</a>
-        <a>Delhi</a>
-        <a>Gurgaon</a>
-        <a>Hyderabad</a>
-        <a>Kolkata</a>
-        <a>Mumbai</a>
-        <a>Pune</a>
-        <a>& more.</a>
+        {map(POPULAR_CITIES, (city) => (
+          <a key={city}>{city}</a>
+        ))}
       </ul>
     </div>
   );

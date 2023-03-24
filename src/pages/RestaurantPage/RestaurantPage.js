@@ -1,27 +1,27 @@
 import React, { Fragment, useContext, useEffect, useState } from "react";
-import RestaurantSearchbar from "./Components/RestaurantSearchBar/RestaurantSearchbar";
-import RestaurantHeader from "./Components/RestaurantHeader/RestaurantHeader";
+import RestaurantSearchbar from "./components/RestaurantSearchBar/RestaurantSearchbar";
 import classes from "./RestaurantPage.module.css";
 import { useNavigate, useParams } from "react-router-dom";
 import CartContext from "../../store/cart-context";
 import ReactDOM from "react-dom";
 import { getRestaurantMenu } from "../../actions/fetchRestaurantMenu";
-import {
-  ERROR,
-  SUCCESS,
-} from "../../utils/constants/userCurrentLocationStatus";
+import { ERROR, SUCCESS } from "../../constants/userCurrentLocationStatus";
 import locationContext from "../../store/location-context";
-import DropDownContainer from "./Components/DropDownContainer/DropDownContainer";
 import { parseRestaurantData } from "./helpers/restaurantMenu";
-import { CartError } from "./Components/CartError/CartError";
-import ViewCart from "./Components/ViewCart/ViewCart";
+import { CartError } from "./components/CartError/CartError";
+import ViewCart from "./components/ViewCart/ViewCart";
+import RestaurantSkeleton from "../RestaurantPage/components/RestaurantSkeleton/RestaurantSkeleton";
+import RestaurantHeader from "./components/RestaurantHeader/RestaurantHeader";
+import DropDownContainer from "./components/DropDownContainer/DropDownContainer";
 
 export default function RestaurantPage() {
   const { id } = useParams();
   const [restaurantMenu, setRestaurantMenu] = useState({});
   const [isLoading, setLoading] = useState(true);
-  const cartCtx = useContext(CartContext);
+  const { items, totalAmount, hasError, clearCart, clearError } =
+    useContext(CartContext);
   const locationCtx = useContext(locationContext);
+  const navigation = useNavigate();
 
   const getData = async () => {
     try {
@@ -45,7 +45,6 @@ export default function RestaurantPage() {
     getData();
   }, []);
 
-  const navigation = useNavigate();
   const viewCartHandler = () => {
     navigation("/check-out", {
       state: {
@@ -55,10 +54,10 @@ export default function RestaurantPage() {
   };
 
   const resetAndAdnNewItemHandler = () => {
-    cartCtx.clearCart();
+    clearCart();
   };
   const CloseErrorModalHandler = () => {
-    cartCtx.clearError();
+    clearError();
   };
   return (
     <Fragment>
@@ -66,14 +65,17 @@ export default function RestaurantPage() {
       <section className={classes.restaurant_page_container}>
         {!isLoading && <RestaurantHeader restaurant={restaurantMenu} />}
         {!isLoading && <DropDownContainer restaurant={restaurantMenu} />}
-        <ViewCart
-          length={cartCtx?.items?.length}
-          totalAmount={cartCtx.totalAmount}
-          onViewCart={viewCartHandler}
-        />
+        {!isLoading && (
+          <ViewCart
+            length={items?.length}
+            totalAmount={totalAmount}
+            onViewCart={viewCartHandler}
+          />
+        )}
+        {isLoading && <RestaurantSkeleton />}
       </section>
 
-      {cartCtx.hasError &&
+      {hasError &&
         ReactDOM.createPortal(
           <CartError
             resetAndAdnNewItemHandler={resetAndAdnNewItemHandler}

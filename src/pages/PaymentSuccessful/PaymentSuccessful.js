@@ -1,17 +1,23 @@
 import React, { useContext, useEffect, useState } from "react";
 import UserContext from "../../store/user-context";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
 import classes from "./PaymenSuccessful.module.css";
 import { BsCheckCircle } from "react-icons/bs";
 import cartContext from "../../store/cart-context";
 import { AiFillHome } from "react-icons/ai";
+import {map} from "lodash";
 
 function PaymentSuccessful(props) {
-  const { isLoggedIn } = useContext(UserContext);
+  const { isLoggedIn, user } = useContext(UserContext);
+  const { name: userName, phoneNumber } = user;
   const navigate = useNavigate();
   const [progressLoading, setProgressLoading] = useState(true);
   const { items, totalAmount } = useContext(cartContext);
+  const {
+    state: { restaurant },
+  } = useLocation();
+  const { name: restaurantName, areaName } = restaurant;
   useEffect(() => {
     if (!isLoggedIn) {
       navigate(-1);
@@ -48,11 +54,11 @@ function PaymentSuccessful(props) {
         <>
           <div className={classes.bill_details}>
             <header className={classes.bill_header}>
-              <h4>Restaurant Name</h4>
-              <p>Restaurant Location</p>
+              <h4>{restaurantName}</h4>
+              <p>{areaName}</p>
             </header>
-            <p>User Name</p>
-            <p>Phone Number</p>
+            <p>{userName}</p>
+            <p>{phoneNumber}</p>
             <hr />
             <ul className={classes.food_item_container}>
               <li className={classes.food_item_header}>
@@ -61,9 +67,9 @@ function PaymentSuccessful(props) {
                 <span>Qty</span>
                 <span>Cost</span>
               </li>
-              {items.map((item, index) => {
+              {map(items,(item, index) => {
                 return (
-                  <li className={classes.food_item}>
+                  <li className={classes.food_item} key={item.name}>
                     <span>{index + 1}.</span>
                     <span>{item.name}</span>
                     <span>{item.quantity}</span>

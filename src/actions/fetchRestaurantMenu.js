@@ -1,4 +1,4 @@
-import { ERROR, SUCCESS } from "../utils/constants/userCurrentLocationStatus";
+import { ERROR, SUCCESS } from "../constants/userCurrentLocationStatus";
 
 export const getRestaurantMenu = async (latitude, longitude, restaurantId) => {
   try {

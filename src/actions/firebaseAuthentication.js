@@ -1,7 +1,7 @@
-import { auth, db } from "../utils/constants/firebaseConfig";
+import { auth, db } from "../constants/firebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
-import { ERROR, SUCCESS } from "../utils/constants/userCurrentLocationStatus";
+import { ERROR, SUCCESS } from "../constants/userCurrentLocationStatus";
 
 export const createAccount = async (name, email, phoneNumber) => {
   try {

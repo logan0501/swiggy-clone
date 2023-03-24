@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./ViewCart.module.css";
 
 function ViewCart(props) {
-  const { length, totalAmount } = props;
+  const { length, totalAmount, onViewCart } = props;
 
   return (
     <div
@@ -13,7 +13,7 @@ function ViewCart(props) {
       <h4>{`${length} ${
         length === 1 ? "item" : "items"
       } | ₹${totalAmount}`}</h4>
-      <button className={classes.view_cart_btn} onClick={props.onViewCart}>
+      <button className={classes.view_cart_btn} onClick={onViewCart}>
         VIEW CART
       </button>
     </div>

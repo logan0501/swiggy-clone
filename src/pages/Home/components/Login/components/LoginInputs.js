@@ -13,7 +13,7 @@ function LoginInputs(props) {
   return (
     <MenuInput
       title="Phone Number"
-      type="number"
+      type="tel"
       onChange={loginPhoneChangeHandler}
       value={loginPhoneNumber}
       displayErrorText={loginPhoneHasError}

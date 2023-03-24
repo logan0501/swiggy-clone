@@ -3,9 +3,22 @@ import { BsFillStarFill } from "react-icons/bs";
 import { TbDiscountCheckFilled } from "react-icons/tb";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { IMAGE_W508_H320_CDN_URL } from "../../constants/imageCdnUrls";
+import { join } from "lodash";
 
 export default function RestaurantCard(props) {
   const { restaurant } = props;
+  const {
+    id,
+    cloudinaryImageId,
+    promoted,
+    name,
+    cuisines,
+    avgRating,
+    slaString,
+    costForTwoString,
+    aggregatedDiscountInfo,
+  } = restaurant;
 
   const [quickView, setQuickView] = useState(false);
 
@@ -16,21 +29,23 @@ export default function RestaurantCard(props) {
     setQuickView(false);
   };
   return (
-    <Link to={"/restaurant-menu/" + restaurant.id}>
+    <Link to={"/restaurant-menu/" + id}>
       <div
         className={classes["restaurant-card"]}
         onMouseEnter={showQuickView}
         onMouseLeave={hideQuickView}
       >
         <div className={classes["restaurant-card-img-div"]}>
-          {
+          {cloudinaryImageId.trim().length !== 0 ? (
             <img
               className={classes["restaurant-img"]}
-              src={`https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/${restaurant.cloudinaryImageId}`}
+              src={`${IMAGE_W508_H320_CDN_URL}${cloudinaryImageId}`}
               alt=""
             />
-          }
-          {restaurant.promoted && (
+          ) : (
+            <div className={classes.restaurantImagePlaceHolder}></div>
+          )}
+          {promoted && (
             <span>
               <div className={classes["restaurant-card-promoted"]}>
                 PROMOTED
@@ -40,25 +55,25 @@ export default function RestaurantCard(props) {
           )}
         </div>
         <div>
-          <h3 className={classes["restaurant-title"]}>{restaurant.name}</h3>
+          <h3 className={classes["restaurant-title"]}>{name}</h3>
           <p className={classes["restaurant-subtitle"]}>
-            {restaurant.cuisines.join(", ")}
+            {join(cuisines, ", ")}
           </p>
         </div>
         <div className={classes["restaurant-detail-container"]}>
           <span className={classes["restaurant-rating"]}>
-            <BsFillStarFill /> <span>{restaurant.avgRating}</span>
+            <BsFillStarFill /> <span>{avgRating}</span>
           </span>
           <div className={classes["dot"]}></div>
-          <span>{restaurant.slaString}</span>
+          <span>{slaString}</span>
           <div className={classes["dot"]}></div>
-          <span>{restaurant.costForTwoString}</span>
+          <span>{costForTwoString}</span>
         </div>
         <div className={classes["restaurant-card-line"]}></div>
         <p className={classes["restaurant-coupon"]}>
           <TbDiscountCheckFilled size="20px" />
-          {restaurant?.aggregatedDiscountInfo?.header}{" "}
-          {restaurant?.aggregatedDiscountInfo?.header !== "FREE DELIVERY"
+          {aggregatedDiscountInfo?.header}{" "}
+          {aggregatedDiscountInfo?.header !== "FREE DELIVERY"
             ? "| USE TRYNEW"
             : ""}
         </p>

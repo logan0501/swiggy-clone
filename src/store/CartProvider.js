@@ -1,5 +1,6 @@
 import CartContext from "./cart-context";
 import { useReducer } from "react";
+import { filter, findIndex } from "lodash";
 
 const initialCartItem = {
   items: [],
@@ -9,22 +10,22 @@ const initialCartItem = {
 };
 
 function cartReducer(state, action) {
-  console.log(action);
   if (action.type === "ADD") {
     if (
-      state.restaurantId == -1 ||
-      state.restaurantId === action.item.restaurantId
+      state?.restaurantId === -1 ||
+      state?.restaurantId === action.item?.restaurantId
     ) {
-      const updatedTotalAmount = state.totalAmount + action.item.price;
+      const updatedTotalAmount = state?.totalAmount + action?.item?.price;
       let updatedItems;
-      const existingCartItemIndex = state.items.findIndex(
-        (item) => item.id === action.item.id
+      const existingCartItemIndex = findIndex(
+        state?.items,
+        (item) => item?.id === action.item?.id
       );
-      const existingItem = state.items[existingCartItemIndex];
+      const existingItem = state?.items[existingCartItemIndex];
       if (existingItem) {
         const updatedItem = {
           ...existingItem,
-          quantity: existingItem.quantity + 1,
+          quantity: existingItem?.quantity + 1,
         };
         updatedItems = [...state.items];
         updatedItems[existingCartItemIndex] = updatedItem;
@@ -48,8 +49,9 @@ function cartReducer(state, action) {
   }
   if (action.type === "ADD_ID") {
     let updatedItems;
-    const existingCartItemIndex = state.items.findIndex(
-      (item) => item.id == action.id
+    const existingCartItemIndex = findIndex(
+      state.items,
+      (item) => item.id === action.id
     );
 
     const existingItem = state.items[existingCartItemIndex];
@@ -70,8 +72,9 @@ function cartReducer(state, action) {
   }
 
   if (action.type === "REMOVE") {
-    const existingCartItemIndex = state.items.findIndex(
-      (item) => item.id == action.id
+    const existingCartItemIndex = findIndex(
+      state.items,
+      (item) => item.id === action.id
     );
     const existingItem = state.items[existingCartItemIndex];
     let updatedTotalAmount = 0;
@@ -79,8 +82,8 @@ function cartReducer(state, action) {
       updatedTotalAmount = state.totalAmount - existingItem.price;
     let updatedItems;
     if (existingItem) {
-      if (existingItem.quantity == 1) {
-        updatedItems = state.items.filter((item) => item.id != action.id);
+      if (existingItem.quantity === 1) {
+        updatedItems = filter(state.items, (item) => item.id !== action.id);
       } else {
         const updatedItem = {
           ...existingItem,

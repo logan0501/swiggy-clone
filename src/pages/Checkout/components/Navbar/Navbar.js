@@ -1,8 +1,7 @@
 import React, { useContext, useState } from "react";
 import SwiggyLogo from "../../../../assets/SwiggyLogo";
 import classes from "./Navbar.module.css";
-import SwiggyHelpIcon from "../../../../assets/SwiggyHelpIcon";
-import SwiggySigninIcon from "../../../../assets/SwiggySigninIcon";
+import SwiggyHelperIcon from "../../../../assets/SwiggyHelpIcon.svg";
 import { CiUser } from "react-icons/ci";
 import userContext from "../../../../store/user-context";
 import { BiLogOutCircle } from "react-icons/bi";
@@ -29,7 +28,7 @@ function Navbar(props) {
         </li>
         <li className={classes.nav_items}>
           <span className={classes.nav_item}>
-            <SwiggyHelpIcon /> Help
+            <img src={SwiggyHelperIcon} /> Help
           </span>
 
           {!isLoading && usercontext.isLoggedIn && (

@@ -1,4 +1,5 @@
-import { ERROR, SUCCESS } from "../utils/constants/userCurrentLocationStatus";
+import { ERROR, SUCCESS } from "../constants/userCurrentLocationStatus";
+import { filter } from "lodash";
 
 const RESTAURANT_NAVBAR_ITEMS_API_PARAMETERS = {
   Relevance: "RELEVANCE",
@@ -17,10 +18,10 @@ export const getRestaurantsData = async (latitude, longitude, navIndex) => {
       throw new Error(response.statusText);
     }
     const restaurantDataJson = await response.json();
-    const restaurantData = restaurantDataJson.data.cards.filter(
+    const restaurantData = filter(
+      restaurantDataJson.data.cards,
       (rest) => rest.cardType === "seeAllRestaurants"
     )[0];
-    console.log(restaurantData);
     return { status: SUCCESS, data: restaurantData.data.data.cards };
   } catch (error) {
     return { status: ERROR, error: error };

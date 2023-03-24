@@ -1,17 +1,20 @@
 import { useState } from "react";
 import classes from "./OfferCorousel.module.css";
-import { OFFERCARD } from "../../../../Constants/OfferCards";
+import { OFFERCARD } from "../../../../constants/OfferCards";
+import { map } from "lodash";
 
 let count = 0;
 let currentIdx = 0;
 export default function OfferCorousel() {
   const [corouselVal, setCorousel] = useState(0);
-  const moveRight = () => {
+  const moveRightHandler = () => {
+    if (currentIdx >= 3) return;
     count = 1;
     currentIdx++;
     setCorousel((prev) => prev - 320);
   };
-  const moveLeft = () => {
+  const moveLeftHandler = () => {
+    if (currentIdx <= 0) return;
     count = -1;
     currentIdx--;
     setCorousel((prev) => prev + 320);
@@ -19,7 +22,7 @@ export default function OfferCorousel() {
   return (
     <section className={classes["food-offers-corousel-container"]}>
       <div className={classes["food-offers-div"]}>
-        {OFFERCARD.map((offer) => (
+        {map(OFFERCARD, (offer) => (
           <div
             key={offer.id}
             className={classes["offer-card"]}
@@ -40,8 +43,7 @@ export default function OfferCorousel() {
           classes["c-right-btn"] +
           ` ${currentIdx < 3 ? "" : classes["disabled-btn"]}`
         }
-        onClick={currentIdx < 3 && moveRight}
-        // style={{ display: currentIdx < 3 ? "flex" : "none" }}
+        onClick={moveRightHandler}
       >
         <p
           className={`${
@@ -58,8 +60,7 @@ export default function OfferCorousel() {
           classes["c-left-btn"] +
           ` ${currentIdx > 0 ? "" : classes["disabled-btn"]}`
         }
-        onClick={currentIdx > 0 && moveLeft}
-        // style={{ display: currentIdx > 0 ? "flex" : "none" }}
+        onClick={moveLeftHandler}
       >
         <p
           className={`${

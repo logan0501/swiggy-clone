@@ -2,7 +2,7 @@ import classes from "./NavBar.module.css";
 import swiggyLogo from "./swiggy-logo.png";
 import { useContext } from "react";
 import UserContext from "../../../../../../store/user-context";
-import { capitalizeString } from "../../../../../Checkout/components/Account/helpers/capitalizeString";
+import capitalize from "lodash/capitalize";
 
 export default function NavBar(props) {
   const { user, isLoggedIn } = useContext(UserContext);
@@ -27,7 +27,7 @@ export default function NavBar(props) {
           </span>
         </span>
       ) : (
-        <h4>{capitalizeString(user.name)} </h4>
+        <h4>{capitalize(user.name)} </h4>
       )}
     </nav>
   );

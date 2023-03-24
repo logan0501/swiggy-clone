@@ -1,11 +1,10 @@
 import React from "react";
 import classes from "./AccountHeader.module.css";
 import { BsCheckCircleFill } from "react-icons/bs";
-import { capitalizeString } from "../helpers/capitalizeString";
+import capitalize from "lodash/capitalize";
 
 function AccountHeader(props) {
   const { user, isLoggedIn } = props;
-  console.log(user, isLoggedIn);
   return (
     <>
       {!isLoggedIn ? (
@@ -27,7 +26,7 @@ function AccountHeader(props) {
           </div>
           <div>
             <h4 className={classes.user_details}>
-              <strong>{`${capitalizeString(user.name)}  | ${
+              <strong>{`${capitalize(user.name)}  | ${
                 user.phoneNumber
               }`}</strong>
             </h4>

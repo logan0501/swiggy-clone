@@ -1,6 +1,7 @@
 import classes from "./CartError.module.css";
 
 export const CartError = (props) => {
+  const { CloseErrorModalHandler, resetAndAdnNewItemHandler } = props;
   return (
     <div className={classes.restaurant_error_modal}>
       <h3>Items already in cart</h3>
@@ -11,13 +12,13 @@ export const CartError = (props) => {
       <div className={classes.error_modal_button_container}>
         <button
           className={classes.error_modal_button + " " + classes.light_button}
-          onClick={props.CloseErrorModalHandler}
+          onClick={CloseErrorModalHandler}
         >
           NO
         </button>
         <button
           className={classes.error_modal_button + " " + classes.dark_button}
-          onClick={props.resetAndAdnNewItemHandler}
+          onClick={resetAndAdnNewItemHandler}
         >
           YES, START AFRESH
         </button>

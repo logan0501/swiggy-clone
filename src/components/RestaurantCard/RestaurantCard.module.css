@@ -1,103 +1,125 @@
 .restaurant-card {
-  border: 0.5px solid transparent;
-  background-color: white;
-  padding: 20px;
-  margin-bottom: 10px;
+    border: 0.5px solid transparent;
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 10px;
 }
-.restaurant-card:hover {
-  border: 0.5px solid var(--light-black);
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-}
-.restaurant-card-img-div {
-  position: relative;
-}
-.restaurant-card-promoted {
-  position: absolute;
-  left: -10px;
-  top: 0;
-  font-size: 0.7rem;
-  background-color: #393c41;
 
-  color: white;
-  padding: 5px 10px;
-  padding-left: 20px;
+.restaurant-card:hover {
+    border: 0.5px solid var(--light-black);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
+
+.restaurant-card-img-div {
+    position: relative;
+}
+
+.restaurant-card-promoted {
+    position: absolute;
+    left: -10px;
+    top: 0;
+    font-size: 0.7rem;
+    background-color: #393c41;
+
+    color: white;
+    padding: 5px 10px;
+    padding-left: 20px;
+}
+
 .restaurant-card-promoted-trap {
-  position: absolute;
-  border-bottom: 10px solid #393c41;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  height: 10px;
-  /* width: 30px; */
-  left: -15px;
-  top: 18px;
-  transform: rotate(-90deg);
-  z-index: 0;
+    position: absolute;
+    border-bottom: 10px solid #393c41;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    height: 10px;
+    /* width: 30px; */
+    left: -15px;
+    top: 18px;
+    transform: rotate(-90deg);
+    z-index: 0;
 }
+
 .restaurant-img {
-  height: 160px;
-  width: auto;
-  margin-bottom: 15px;
-  z-index: 10;
+    height: 160px;
+    width: auto;
+    margin-bottom: 15px;
+    z-index: 10;
 }
+
+.restaurantImagePlaceHolder {
+    height: 160px;
+    width: 254px;
+    background: #94959f;
+    margin-bottom: 15px;
+
+}
+
 .restaurant-title {
-  font-size: 1rem;
-  font-weight: 500;
-  margin-bottom: 5px;
-  color: rgb(86, 87, 98);
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: rgb(86, 87, 98);
 }
+
 .restaurant-subtitle {
-  font-size: 0.8rem;
-  color: #686b78;
-  margin-bottom: 20px;
-  font-weight: 100;
+    font-size: 0.8rem;
+    color: #686b78;
+    margin-bottom: 20px;
+    font-weight: 100;
 }
+
 .restaurant-detail-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: #686b78;
-  font-size: 0.8rem;
-  font-weight: 100;
-  margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #686b78;
+    font-size: 0.8rem;
+    font-weight: 100;
+    margin-bottom: 20px;
 }
 
 .restaurant-rating {
-  background-color: #47c379;
-  padding: 3px 6px;
-  color: white;
-  width: 60px;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+    background-color: #47c379;
+    padding: 3px 6px;
+    color: white;
+    width: 60px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 }
+
 .dot {
-  height: 3px;
-  width: 3px;
-  background-color: black;
-  border-radius: 100px;
+    height: 3px;
+    width: 3px;
+    background-color: black;
+    border-radius: 100px;
 }
+
 .restaurant-card-line {
-  border-bottom: 0.5px solid #686b78;
-  margin-bottom: 20px;
+    border-bottom: 0.5px solid #686b78;
+    margin-bottom: 20px;
 }
+
 .restaurant-card-footer {
-  text-align: center;
-  margin-top: 20px;
+    text-align: center;
+    margin-top: 20px;
 }
+
 .restaurant-card-footer p {
-  font-size: 0.8rem;
-  color: #5d8ed4;
-  cursor: pointer;
+    font-size: 0.8rem;
+    color: #5d8ed4;
+    cursor: pointer;
 }
+
 .restaurant-coupon {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #8a584b;
-  font-size: 0.8rem;
-  font-weight: 300;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #8a584b;
+    font-size: 0.8rem;
+    font-weight: 300;
 }
+
 .restaurant-coupon p {
-  font-weight: 600;
+    font-weight: 600;
 }

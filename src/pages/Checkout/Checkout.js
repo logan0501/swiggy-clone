@@ -19,7 +19,6 @@ function Checkout(props) {
   const deliveryAddressHandler = (newValue) => {
     setDeliveryAddressAdded(newValue);
   };
-
   const cartCtx = useContext(cartContext);
   return (
     <Fragment>
@@ -37,7 +36,6 @@ function Checkout(props) {
             </div>
             <div className={classes.process_container}>
               <div className={classes.dotted_line}></div>
-
               <span className={classes.process_icon}>
                 <SlLocationPin />
               </span>
@@ -50,7 +48,10 @@ function Checkout(props) {
               <span className={classes.process_icon}>
                 <FaMoneyCheckAlt />
               </span>
-              <Payment addressCheckOut={isDeliveryAddressAdded} />
+              <Payment
+                addressCheckOut={isDeliveryAddressAdded}
+                restaurant={restaurant}
+              />
             </div>
           </div>
           <CartDetails restaurant={restaurant} />

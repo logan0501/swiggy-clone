@@ -1,21 +1,28 @@
 import RestaurantNavbar from "./components/RestaurantNavbar/RestaurantNavbar";
 import RestaurantCard from "../../../../components/RestaurantCard/RestaurantCard";
 import classes from "./Restaurants.module.css";
-import { Fragment, useContext, useEffect, useState } from "react";
+import { Fragment, useContext, useEffect } from "react";
 import RestaurantSkeleton from "./RestaurantSkeleton";
 import LocationContext from "../../../../store/location-context";
 import { getRestaurantsData } from "../../../../actions/fetchRestaurants";
 import {
   ERROR,
   SUCCESS,
-} from "../../../../utils/constants/userCurrentLocationStatus";
+} from "../../../../constants/userCurrentLocationStatus";
 import { RestaurantContext } from "../../../../store/restaurant-context";
+import { map } from "lodash";
 
+let latitude;
+let longitude;
 export default function Restaurants() {
-  const [navIndex, setNavIndex] = useState("Relevance");
+  // const [navIndex, setNavIndex] = useState("Relevance");
   const locationctx = useContext(LocationContext);
   const restaurantContext = useContext(RestaurantContext);
   const restaurants = restaurantContext.restaurants;
+  const {
+    restaurantFilterType: navIndex,
+    setRestaurantFilterType: setNavIndex,
+  } = restaurantContext;
   const getData = async (latitude, longitude) => {
     restaurantContext.setIsLoading(true);
     const data = await getRestaurantsData(latitude, longitude, navIndex);
@@ -28,10 +35,13 @@ export default function Restaurants() {
     restaurantContext.setIsLoading(false);
   };
 
-  let latitude = locationctx.latitude;
-  let longitude = locationctx.longitude;
+  latitude = locationctx.latitude;
+  longitude = locationctx.longitude;
+
   useEffect(() => {
-    if (latitude && longitude) getData(latitude, longitude);
+    if (latitude && longitude && restaurants.length === 0) {
+      getData(latitude, longitude);
+    }
   }, [latitude, longitude, navIndex]);
   const navIndexHandler = (index) => {
     setNavIndex(index);
@@ -43,10 +53,10 @@ export default function Restaurants() {
         <section className={classes["restaurants-section"]}>
           <RestaurantNavbar onNavChange={navIndexHandler} navIndex={navIndex} />
           <section className={classes["restaurants-display-section"]}>
-            {restaurants.map((restaurant) => (
+            {map(restaurants, (restaurant) => (
               <RestaurantCard
-                key={restaurant.data.id}
-                restaurant={restaurant.data}
+                key={restaurant?.data?.id}
+                restaurant={restaurant?.data}
               />
             ))}
           </section>

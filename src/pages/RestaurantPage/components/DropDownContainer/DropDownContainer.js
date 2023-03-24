@@ -2,57 +2,28 @@ import { Fragment, useState } from "react";
 import { MdExpandMore } from "react-icons/md";
 import classes from "./DropDownContainer.module.css";
 import DropDownItem from "./DropDownItem/DropDownIItem";
+import { showDropDownHandler } from "./helpers/dropdownContainer.general";
+import {map} from "lodash";
 
 export default function DropDownContainer(props) {
   const {
     restaurant: { foodItems: menuItems },
   } = props;
   const restaurantId = props.restaurant.restaurantDetails.id;
-  // const menuIdKeys = Object.keys(menuItems);
-  // const menuBasedOnCategory = {};
-  // menuBasedOnCategory["Recommended"] = [];
-  // for (const key of menuIdKeys) {
-  //   if (menuItems[key].recommended === 1) {
-  //     menuBasedOnCategory["Recommended"].push(key);
-  //   }
-  // }
-  // if (menuBasedOnCategory["Recommended"].length == 0)
-  //   delete menuBasedOnCategory["Recommended"];
-  // for (const key of menuIdKeys) {
-  //   const category = menuItems[key].category;
-  //   if (category in menuBasedOnCategory) {
-  //     menuBasedOnCategory[category].push(key);
-  //   } else menuBasedOnCategory[category.trim()] = [key];
-  // }
-  // const menuCategories = Object.keys(menuBasedOnCategory);
-
   const [showDropdown, setShowDropdown] = useState([]);
   const dropdownHandler = (newval) => {
-    setShowDropdown((prev) => {
-      if (prev.includes(newval)) {
-        const newarray = [...prev];
-        newarray.splice(
-          prev.findIndex((item) => {
-            return item === newval;
-          }),
-          1
-        );
-
-        return newarray;
-      } else {
-        return [...prev, newval];
-      }
-    });
+    setShowDropdown((prevState) => showDropDownHandler(prevState, newval));
   };
 
   return (
     <Fragment>
-      {menuItems.map((menuCategory) => {
+      {menuItems && map(menuItems,(menuCategory) => {
+        const { category, categoryItems } = menuCategory;
         return (
-          <Fragment key={menuCategory?.category}>
+          <Fragment key={category}>
             <div className={classes.dropdown_container}>
               <header className={classes.dropdown_header}>
-                <h3>{`${menuCategory?.category} (${menuCategory?.categoryItems?.length})`}</h3>
+                <h3>{`${category} (${categoryItems?.length})`}</h3>
                 <MdExpandMore
                   onClick={dropdownHandler.bind(null, menuCategory)}
                   size="2rem"
@@ -71,18 +42,18 @@ export default function DropDownContainer(props) {
                     : "none",
                 }}
               >
-                {menuCategory.categoryItems.map((menukey) => {
+                {map(categoryItems,(menukey) => {
+                  const { foodid, foodDetails } = menukey;
                   return (
                     <DropDownItem
-                      key={menukey?.foodid}
-                      food={menukey?.foodDetails}
+                      key={foodid}
+                      food={foodDetails}
                       restuarantId={restaurantId}
                     />
                   );
                 })}
               </ul>
             </div>
-
             <div className={classes.dropdown_footer}></div>
           </Fragment>
         );
